@@ -18,7 +18,7 @@ public class ResourceExceptionHandler {
         HttpStatus status = HttpStatus.NOT_FOUND;
 
         StandardError error = new StandardError();
-        error.setError("Nof Found");
+        error.setError("Not Found");
         error.setMessage(e.getMessage());
         error.setPath(request.getRequestURI());
         error.setStatus(status.value());
