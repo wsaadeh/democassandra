@@ -2,6 +2,7 @@ package com.saadeh.democassandra.controllers;
 
 import com.saadeh.democassandra.model.dto.DepartmentDTO;
 import com.saadeh.democassandra.model.dto.ProductDTO;
+import com.saadeh.democassandra.model.entities.Product;
 import com.saadeh.democassandra.services.DepartmentService;
 import com.saadeh.democassandra.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,12 @@ public class ProductController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable UUID id) {
         ProductDTO result = service.findById(id);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> findByDepartment(@RequestParam(name = "department", defaultValue = "") String department) {
+        List<ProductDTO> result = service.findByDeparment(department);
         return ResponseEntity.ok(result);
     }
 

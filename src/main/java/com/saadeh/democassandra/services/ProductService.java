@@ -7,6 +7,7 @@ import com.saadeh.democassandra.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,6 +25,11 @@ public class ProductService {
         Optional<Product> result = repository.findById(id);
         Product entity = result.orElseThrow(()-> new ResourceNotFoundException("Id not found."));
         return entity;
+    }
+
+    public List<ProductDTO> findByDeparment(String department){
+        List<Product> list = repository.findByDepartment(department);
+        return list.stream().map(ProductDTO::new).toList();
     }
 
 
